@@ -1,0 +1,47 @@
+    {
+        "metrics": [
+            {
+                "name": "Jobs.2012",
+                "as": "2012 Jobs"
+            }, 
+            {
+                "name": "Earnings.2012",
+                "as": "2012 Earnings"
+            }, 
+            {
+                "name": "Jobs.2017",
+                "as": "2017 Jobs"
+            }, 
+            {
+                "name": "Earnings.2017",
+                "as": "2017 Earnings"
+            }, 
+            {
+                "name": "Jobs.2023",
+                "as": "2023 Jobs"
+            }, 
+            {
+                "name": "Earnings.2023",
+                "as": "2023 Earnings"
+            }
+        ],
+
+        "constraints": [
+            {
+                "dimensionName": "Area",
+                "map": {
+                    "Wayne County, MI": ["26163"],
+                    "Oakland County, MI": ["26125"],
+                    "Macomb County, MI": ["26099"],
+                    "Michigan": ["26"],
+                    "Detroit City, Wayne County, MI": ["2616322000"]
+                }
+            },
+            { 
+                "dimensionName": "Industry", 
+                "map": { 
+                    "Software development": ["541511"]
+                }
+            } 
+        ]
+    }
