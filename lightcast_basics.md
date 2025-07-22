@@ -42,7 +42,7 @@ All of those codes and their descriptions can be found in the `detroit_tech_empl
 
 Not all Lightcast data is available at every geography -- some data is available only nation-wide, some doesn't go more granular than MSA. This is shown for Core LMI anyway in the 'Area' dimension in the 'levelsStored' field of the metadata. 
 
-```json
+```
 ...
     {
         "name": "Area",
