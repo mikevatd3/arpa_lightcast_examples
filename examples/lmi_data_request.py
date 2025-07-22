@@ -18,7 +18,8 @@ def main():
     # EXAMPLES
     ###########################################################################
     
-    # See payload structure [here](./request_payloads/lmi_data_request_software_development.json)
+    # Review payload structure:
+    # https://github.com/mikevatd3/arpa_lightcast_examples/blob/main/examples/request_payloads/lmi_data_request_software_development.json
 
     url = "https://agnitio.emsicloud.com/meta"
     response = requests.request("get", url, headers=headers)
