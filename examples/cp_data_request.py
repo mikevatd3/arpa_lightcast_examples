@@ -18,14 +18,14 @@ def main():
     }
 
     ###########################################################################
-    # EXAMPLES
+    # EXAMPLE
     ###########################################################################
 
     # Review payload structure:
     # ./request_payloads/cp_request.json
     
     # Dimensions available:
-    # soc
+    # soc <- we're using SOC
     # onet
     # lotocc
     # lotspecocc
