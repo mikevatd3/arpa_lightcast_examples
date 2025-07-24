@@ -7,6 +7,8 @@ from auth import retrieve_auth
 today = datetime.date.today().strftime("%Y%M%d")
 
 
+EXAMPLE_DIR = Path(__file__).parent
+
 def main():
     auth = retrieve_auth()
     headers = {
@@ -23,7 +25,7 @@ def main():
     url = "https://agnitio.emsicloud.com/meta"
     response = requests.request("get", url, headers=headers)
 
-    with open(Path.cwd() / "output" / "lmi_metadata.json", "w") as f:
+    with open(EXAMPLE_DIR / "output" / "lmi_metadata.json", "w") as f:
         json.dump(response.json(), f, indent=4)
 
     # Get more information about the items in the list from the call above
@@ -32,7 +34,7 @@ def main():
     url = "https://agnitio.emsicloud.com/meta/definitions"
     response = requests.request("get", url, headers=headers)
 
-    with open(Path.cwd() / "output" / "lmi_definitions.json", "w") as f:
+    with open(EXAMPLE_DIR / "output" / "lmi_definitions.json", "w") as f:
         json.dump(response.json(), f, indent=4)
 
     # Then for dataset-specific information like 'metrics' and 'dimensions' 
@@ -41,7 +43,7 @@ def main():
     url = "https://agnitio.emsicloud.com/meta/dataset/EMSI.us.Staffing/2025.3"
     response = requests.request("get", url, headers=headers)
 
-    with open(Path.cwd() / "output" / "lmi_staffing_meta.json", "w") as f:
+    with open(EXAMPLE_DIR / "output" / "lmi_staffing_meta.json", "w") as f:
         json.dump(response.json(), f, indent=4)
 
     ###########################################################################

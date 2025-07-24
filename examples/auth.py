@@ -4,16 +4,15 @@ import requests
 import datetime
 
 """
-This module handles updating the auth token automatically as it times out,
-and makes it easier to read in the saved token from the data access function.
+Use retreive_auth() to automatically update the auth token after it times out.
 """
 
-BASE_DIR = Path(__file__).parent
+BASE_DIR = Path(__file__).parent.parent
 
 
 def refresh_auth():
     print("Refreshing Lightcast API token.")
-    with open("config.json") as f:
+    with open(BASE_DIR / "config.json") as f:
         config = json.load(f)
 
         CLIENT_ID = config["username"]
@@ -42,8 +41,14 @@ def retrieve_auth():
         received_time = datetime.datetime.fromisoformat(auth_info["received"])
         expires_in_seconds = auth_info["expires_in"]
 
+        time_left = received_time + datetime.timedelta(
+            seconds=(expires_in_seconds - 10) # Expire ten seconds early
+        ) - datetime.datetime.now()
+
+        print(f"{time_left} seconds remaining on auth token.")
+        
         if datetime.datetime.now() > received_time + datetime.timedelta(
-            seconds=(expires_in_seconds + 10) # Expire ten seconds early
+            seconds=(expires_in_seconds - 10) # Expire ten seconds early
         ):
             refresh_auth()
             with open(BASE_DIR / "auth.json") as f:
@@ -52,6 +57,7 @@ def retrieve_auth():
         return auth_info
 
     except FileNotFoundError:
+        print("creating new auth file")
         refresh_auth()
         with open("auth.json") as f:
             return json.load(f)

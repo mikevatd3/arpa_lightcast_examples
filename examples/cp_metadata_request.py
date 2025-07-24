@@ -4,6 +4,8 @@ import requests
 from auth import retrieve_auth
 
 
+EXAMPLE_DIR = Path(__file__).parent
+
 def main():
     auth = retrieve_auth()
     headers = {
@@ -20,7 +22,7 @@ def main():
     url = "https://emsiservices.com/career-pathways/meta"
     response = requests.get(url, headers=headers)
 
-    with open(Path.cwd() / "output" / f"cp_metadata.json", "w") as f:
+    with open(EXAMPLE_DIR / "output" / f"cp_metadata.json", "w") as f:
        json.dump(response.json(), f, indent=4)
 
     # Get the list of dimensions
@@ -28,7 +30,7 @@ def main():
     url = "https://emsiservices.com/career-pathways/dimensions"
     response = requests.get(url, headers=headers)
 
-    with open(Path.cwd() / "output" / f"cp_dimensions.json", "w") as f:
+    with open(EXAMPLE_DIR / "output" / f"cp_dimensions.json", "w") as f:
        json.dump(response.json(), f, indent=4)
 
     # Show details of the soc dimension (no codes unforch)
@@ -36,7 +38,7 @@ def main():
     url = "https://emsiservices.com/career-pathways/dimensions/soc"
     response = requests.get(url, headers=headers)
 
-    with open(Path.cwd() / "output" / f"cp_soc.json", "w") as f:
+    with open(EXAMPLE_DIR / "output" / f"cp_soc.json", "w") as f:
        json.dump(response.json(), f, indent=4)
 
 
